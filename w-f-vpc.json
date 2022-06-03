@@ -1,0 +1,47 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "this template creates a vpc and two subnets",
+    "Metadata": {
+
+    },
+    "Parameters": {
+
+    },
+    "Mappings": {
+
+    },
+    "Conditions": {
+
+    },
+    "Resources": {
+      "WFvpc": {
+        "Type": "AWS::EC2::VPC",
+        "Properties": {
+          "CidrBlock": "10.0.0.0/16",
+          "Tags": [{ "Key": "Name", "Value":  "wfvpc1" }]
+        }
+      },
+      "wfpubsubnet": {
+        "Type": "AWS::EC2::Subnet",
+        "Properties": {
+          "AvailabilityZone": "us-east-1a",
+          "VpcId": { "Ref": "WFvpc" },
+          "CidrBlock": "10.0.2.0/24",
+          "Tags": [{ "Key": "Name", "Value":  "w-f-subnet1" }]
+        }
+      },
+      "wfprvtsubnet": {
+        "Type": "AWS::EC2::Subnet",
+        "Properties": {
+          "AvailabilityZone": "us-east-1b",
+          "VpcId": { "Ref": "WFvpc" },
+          "CidrBlock": "10.0.1.0/24",
+          "Tags": [{ "Key": "Name", "Value":  "w-f-subnet2" }]
+        }
+      },
+
+    },
+    "Outputs": {
+
+    }
+}
